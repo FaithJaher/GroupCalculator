@@ -63,7 +63,7 @@ public class ScientificCalculator extends JFrame implements ActionListener {
         String[] buttons = {" "," "," "," "," "," ","DEL","AC","%","÷","+/-","x²","x³","xʸ","e^x","10ˣ","7","8","9",
                 "x","1/x", "²√x","³√x","ʸ√x","ln","log","4","5","6","-",
                 "x!","sin","cos","tan","e","EE","1","2","3","+",
-                "Inv","sinh","cosh","tanh","π"," ","","0",".","="};
+                " ","sinh","cosh","tanh","π"," ","","0",".","="};
 
         for (String text : buttons) {
             JButton button = new JButton(text);
@@ -90,7 +90,6 @@ public class ScientificCalculator extends JFrame implements ActionListener {
     private String formatScientificNotation(double value) {
         return String.valueOf(value).replace("E", " × 10^");
     }
-    private boolean inverseMode = false;
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -116,15 +115,6 @@ public class ScientificCalculator extends JFrame implements ActionListener {
                         }else if (operator.equals("tan") && expression.startsWith("tan")) {
                             num1 = Double.parseDouble(expression.substring(3));
                             display.setText(String.valueOf(Math.tan(Math.toRadians(num1))));
-                        }else if (operator.equals("sin⁻¹") && display.getText().startsWith("sin⁻¹")) {
-                            num1 = Double.parseDouble(display.getText().substring(5));
-                            display.setText(String.valueOf(Math.toDegrees(Math.asin(num1))));
-                        } else if (operator.equals("cos⁻¹") && display.getText().startsWith("cos⁻¹")) {
-                            num1 = Double.parseDouble(display.getText().substring(5));
-                            display.setText(String.valueOf(Math.toDegrees(Math.acos(num1))));
-                        } else if (operator.equals("tan⁻¹") && display.getText().startsWith("tan⁻¹")) {
-                            num1 = Double.parseDouble(display.getText().substring(5));
-                            display.setText(String.valueOf(Math.toDegrees(Math.atan(num1))));
                         }else if (operator.equals("sinh") && expression.startsWith("sinh")) {
                             num1 = Double.parseDouble(expression.substring(4));
                             double sinhValue = Math.sinh(num1);
@@ -137,23 +127,6 @@ public class ScientificCalculator extends JFrame implements ActionListener {
                             num1 = Double.parseDouble(expression.substring(4));
                             double tanhValue = Math.tanh(num1);
                             display.setText(formatScientificNotation(tanhValue));
-                        }else if (operator.equals("sinh⁻¹") && display.getText().startsWith("sinh⁻¹")) {
-                            num1 = Double.parseDouble(display.getText().substring(6));
-                            display.setText(String.valueOf(Math.log(num1 + Math.sqrt(num1 * num1 + 1))));
-                        }else if (operator.equals("cosh⁻¹") && display.getText().startsWith("cosh⁻¹")) {
-                            num1 = Double.parseDouble(display.getText().substring(6));
-                            if (num1 < 1) {
-                                display.setText("Error");
-                            } else {
-                                display.setText(String.valueOf(Math.log(num1 + Math.sqrt(num1 * num1 - 1))));
-                            }
-                        }else if (operator.equals("tanh⁻¹") && display.getText().startsWith("tanh⁻¹")) {
-                            num1 = Double.parseDouble(display.getText().substring(6));
-                            if (num1 <= -1 || num1 >= 1) {
-                                display.setText("Error");
-                            } else {
-                                display.setText(String.valueOf(0.5 * Math.log((1 + num1) / (1 - num1))));
-                            }
                         }else if (operator.equals("log") && expression.startsWith("log")) {
                             num1 = Double.parseDouble(expression.substring(3));
                             display.setText(String.valueOf(Math.log10(num1)));
@@ -226,49 +199,34 @@ public class ScientificCalculator extends JFrame implements ActionListener {
                     operator = "ln";
                     operatorClicked = true;
                     break;
-                case "INV":
-                    inverseMode = !inverseMode; // Toggle inverse mode
-                    break;
                 case "sin":
                     display.setText("sin");
                     operator = "sin";
-                    display.setText(!inverseMode ? "sin⁻¹" : "sin");
-                    operator = !inverseMode ? "sin⁻¹" : "sin";
                     operatorClicked = true;
                     break;
                 case "cos":
                     display.setText("cos");
                     operator = "cos";
-                    display.setText(!inverseMode ? "cos⁻¹" : "cos");
-                    operator = !inverseMode ? "cos⁻¹" : "cos";
                     operatorClicked = true;
                     break;
                 case "tan":
                     display.setText("tan");
                     operator = "tan";
-                    display.setText(!inverseMode ? "tan⁻¹" : "tan");
-                    operator = !inverseMode ? "tan⁻¹" : "tan";
                     operatorClicked = true;
                     break;
                 case "cosh":
                     display.setText("cosh");
                     operator = "cosh";
-                    display.setText(!inverseMode ? "cosh⁻¹" : "cosh");
-                    operator = !inverseMode ? "cosh⁻¹" : "cosh";
                     operatorClicked = true;
                     break;
                 case "sinh":
                     display.setText("sinh");
                     operator = "sinh";
-                    display.setText(!inverseMode ? "sinh⁻¹" : "sinh");
-                    operator = !inverseMode ? "sinh⁻¹" : "sinh";
                     operatorClicked = true;
                     break;
                 case "tanh":
                     display.setText("tanh");
                     operator = "tanh";
-                    display.setText(!inverseMode ? "tanh⁻¹" : "tanh");
-                    operator = !inverseMode ? "tanh⁻¹" : "tanh";
                     operatorClicked = true;
                     break;
                 case "π":
@@ -389,5 +347,3 @@ public class ScientificCalculator extends JFrame implements ActionListener {
         });
     }
 }
-
-
