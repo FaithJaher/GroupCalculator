@@ -62,7 +62,7 @@ GroupCalculator/
 1. Clone the repository:
 
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/FaithJaher/GroupCalculator.git
    ```
 
 2. Open the `GroupCalculator` folder in IntelliJ IDEA.
@@ -79,7 +79,6 @@ GroupCalculator/
 * Event-driven programming
 * Graphical user interface development
 * Mathematical computation using Java's `Math` class
-
 
 ## Contributors
 
